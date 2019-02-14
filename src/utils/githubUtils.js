@@ -51,7 +51,7 @@ Error details: ${bugDetails}`;
 
     body = body.replace('\r\n', '\n');
 
-    let url = `https://github.com/IAmPicard/StarTrekTimelinesSpreadsheet/issues/new?labels=${encodeURIComponent(labels)}&title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+    let url = `https://github.com/Kirkman/StarTrekTimelinesSpreadsheet/issues/new?labels=${encodeURIComponent(labels)}&title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
 
     openShellExternal(url);
 }
