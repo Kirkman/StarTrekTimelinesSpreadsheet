@@ -24,7 +24,7 @@ class GauntletCrew extends React.Component {
 			<h5 className="ui top attached header" style={{ color: getTheme().palette.neutralDark, backgroundColor: getTheme().palette.themeLighter, padding: '2px' }}>{STTApi.getCrewAvatarBySymbol(this.props.crew.archetype_symbol).name}</h5>
 			<div className="ui attached segment" style={{ backgroundColor: getTheme().palette.themeLighter, padding: '0' }}>
 				<div style={{ position: 'relative', display: 'inline-block' }}>
-					<img src={STTApi.getCrewAvatarBySymbol(this.props.crew.archetype_symbol).iconUrl} className={this.props.crew.disabled ? 'image-disabled' : ''} height={Math.min(200, this.props.maxwidth)} />
+					<img src={STTApi.getCrewAvatarBySymbol(this.props.crew.archetype_symbol).iconUrl} className={this.props.crew.disabled ? 'image-disabled' : ''} height={Math.min(100, this.props.maxwidth)} />
 					<div className={"ui circular label " + (this.props.crew.disabled ? "red" : "green")} style={{ position: 'absolute', right: '0', top: '0' }}>{this.props.crew.crit_chance}%</div>
 				</div>
 			</div>
@@ -39,7 +39,7 @@ class GauntletCrew extends React.Component {
 				)}
 				<p className='gauntletCrew-statline'>Crit chance {this.props.crew.crit_chance}%</p>
 			</div>}
-			<div className="ui bottom attached primary button" onClick={() => this.props.revive(this.props.crew.disabled)}>
+			<div className="ui bottom attached primary button" style={{fontSize: '0.75rem'}} onClick={() => this.props.revive(this.props.crew.disabled)}>
 				<i className="money bill alternate outline icon"></i>
 				{this.props.crew.disabled ? 'Revive (30 dil)' : 'Restore (30 dil)'}
 			</div>
@@ -129,9 +129,6 @@ class GauntletMatch extends React.Component {
 			"pcrewimage button button button ocrewimage"`};
 
 		return <div className="ui compact segments" style={{ margin: 'unset' }}>
-			<h5 className="ui top attached header" style={{ color: getTheme().palette.neutralDark, backgroundColor: getTheme().palette.themeLighter, textAlign: 'center', padding: '2px' }}>
-				vs {this.props.match.opponent.name} (rank {this.props.match.opponent.rank})
-			</h5>
 			<div style={containerStyle} className="ui attached segment">
 				<span style={{ gridArea: 'pcrewname', justifySelf: 'center' }}>{STTApi.getCrewAvatarBySymbol(this.props.match.crewOdd.archetype_symbol).short_name}</span>
 				<div style={{ gridArea: 'pcrewimage', position: 'relative' }}>
@@ -286,6 +283,9 @@ export class GauntletHelper extends React.Component {
 	_payForNewOpponents() {
 		payToGetNewOpponents(this.state.gauntlet.id).then((data) => {
 			if (data.gauntlet) {
+				// Force the API to fetch new currency data, so that the merit total will refresh after spending some.
+				STTApi.resyncPlayerCurrencyData();
+				// Pass on the gauntlet data.
 				this._gauntletDataRecieved(data);
 			} else if (data.message) {
 				this.setState({
@@ -306,6 +306,7 @@ export class GauntletHelper extends React.Component {
 					gauntlet: data.gauntlet,
 					lastErrorMessage: null,
 					lastResult: null,
+					merits: data.merits,
 					startsIn: formatTimeSeconds(data.gauntlet.seconds_to_join),
 					featuredSkill: data.gauntlet.contest_data.featured_skill,
 					traits: data.gauntlet.contest_data.traits.map(function (trait) { return STTApi.getTraitName(trait); }.bind(this))
@@ -455,6 +456,10 @@ export class GauntletHelper extends React.Component {
 	}
 
 	render() {
+		// STTApi.loadPlayerData();
+		// STTApi.resyncPlayerCurrencyData();
+		// console.log(STTApi.playerData);
+
 		if (this.state.showSpinner) {
 			return <div className="centeredVerticalAndHorizontal">
 				<div className="ui massive centered text active inline loader">Loading gauntlet details...</div>
@@ -534,6 +539,7 @@ export class GauntletHelper extends React.Component {
 			);
 		}
 		else if (this.state.gauntlet && ((this.state.gauntlet.state == 'STARTED') && this.state.roundOdds)) {
+
 			let playerCrew, opponentCrew, playerRoll, opponentRoll, playerRollMsg, opponentRollMsg;
 
 			if (this.state.lastResult && this.state.lastResult.match) {
@@ -605,7 +611,7 @@ export class GauntletHelper extends React.Component {
 
 					<br />
 
-					<div style={{ display: 'grid', gridGap: '10px', margin: '8px', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+					<div style={{ display: 'grid', gridGap: '10px', margin: '8px', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
 						{matches.map((match) =>
 							<GauntletMatch key={match.crewOdd.archetype_symbol + match.opponent.player_id} match={match} gauntlet={this.state.gauntlet} consecutive_wins={this.state.roundOdds.consecutive_wins} onNewData={this._gauntletDataRecieved} />
 						)}
