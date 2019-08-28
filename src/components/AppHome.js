@@ -525,17 +525,21 @@ export class AppHome extends React.Component {
 			dataLoaded: true
 		});
 
+		// ---- BEGIN JOSH COMMENT ----
+		// There's some issue with tag_name below, so I'm just commenting this whole thing out. Saves me from hitting 'esc' every time I launch the app.
+		// ---- END JOSH COMMENT ----
+		//
 		// #!if ENV === 'electron'
-		let data = await STTApi.getGithubReleases();
-		let versions = data.map((release) => release.tag_name.replace('v', ''));
-		let maxVersion = versions.sort(rcompare)[0];
+		// let data = await STTApi.getGithubReleases();
+		// let versions = data.map((release) => release.tag_name.replace('v', ''));
+		// let maxVersion = versions.sort(rcompare)[0];
 
-		if (maxVersion != getAppVersion()) {
-			var n = new Notification('STT Tool - Update available!', { body: 'A new release of the Star Trek Tool (' + data[0].tag_name + ' ' + data[0].name + ') has been made available. Please check the About tab for download instructions!' });
-			this.setState({
-				updateUrl: data[0].html_url
-			});
-		}
+		// if (maxVersion != getAppVersion()) {
+		// 	var n = new Notification('STT Tool - Update available!', { body: 'A new release of the Star Trek Tool (' + data[0].tag_name + ' ' + data[0].name + ') has been made available. Please check the About tab for download instructions!' });
+		// 	this.setState({
+		// 		updateUrl: data[0].html_url
+		// 	});
+		// }
 		// #!endif
 
 		STTApi.networkHelper.get(STTApi.serverAddress + 'motd/get', { webApp: STTApi.inWebMode, dbid: STTApi.playerData.dbid, id: STTApi.playerData.character.id, captainName: STTApi.playerData.character.display_name, version: getAppVersion() }).then((data) => {
