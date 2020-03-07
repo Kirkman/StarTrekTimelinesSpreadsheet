@@ -49,8 +49,7 @@
     "postpackagedev": "electron-packager ./ --out=./builds --prune --icon=src/assets/icons/ATFleet.ico",
     "installer": "node createinstaller.js",
     "install:all": "run-s -l install:api rebuild",
-    "install:api": "cd STTApi && npm install",
-    "postinstall": "electron-builder install-app-deps"
+    "install:api": "cd STTApi && npm install"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -101,6 +100,7 @@
     "dexie": "^2.0.4",
     "electron-settings": "^3.2.0",
     "fb": "^2.0.0",
+    "fstream": "^1.0.12",
     "history": "^4.7.2",
     "react-device-detect": "^1.6.1",
     "react-table": "^6.8.6",
@@ -110,6 +110,7 @@
     "stt-native": "file:native",
     "stt-native-wasm": "file:native_wasm",
     "sttapi": "file:STTApi",
+    "tar": "^5.0.5",
     "url-search-params-polyfill": "^5.0.0",
     "uuid": "^3.3.2"
   }
