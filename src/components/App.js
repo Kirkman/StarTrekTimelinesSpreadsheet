@@ -53,7 +53,10 @@ class App extends React.Component {
 		// #!endif
 
 		// #!if ENV === 'electron'
-		STTApi.setImageProvider(true, new FileImageCache());
+		// Setting "true" here will fetch directly from STT game CDN. 
+		// Setting "false" will fetch from the fan STT Wiki or the STT Datacore server.
+		// I changed this in 2021-08 because the STT wiki and Datacore have more success with character images 
+		STTApi.setImageProvider(false, new FileImageCache());
 		// #!else
 		STTApi.setImageProviderOverride(new ServerImageProvider(STTApi.serverAddress));
 		// #!endif
