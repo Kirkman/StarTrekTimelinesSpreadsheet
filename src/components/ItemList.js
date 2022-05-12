@@ -35,7 +35,7 @@ export class ItemList extends React.Component {
 					accessor: 'name',
 					Cell: (p) => {
 						let item = p.original;
-						return (<a href={'https://stt.wiki/wiki/' + item.name.split(' ').join('_')} target='_blank'>{item.name}</a>);
+						return (<a href={'https://sttwiki.org/wiki/' + item.name.split(' ').join('_')} target='_blank'>{item.name}</a>);
 					}
 				},
 				{

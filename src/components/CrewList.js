@@ -282,7 +282,7 @@ export class CrewList extends React.Component {
 				accessor: 'short_name',
 				Cell: (cell) => {
 					if (cell && cell.original) {
-						return <a href={'https://stt.wiki/wiki/' + cell.original.name.split(' ').join('_')} target='_blank'>{cell.original.short_name}</a>;
+						return <a href={'https://sttwiki.org/wiki/' + cell.original.name.split(' ').join('_')} target='_blank'>{cell.original.short_name}</a>;
 					} else {
 						return <span />;
 					}

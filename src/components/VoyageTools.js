@@ -459,7 +459,7 @@ export class VoyageLog extends React.Component {
 				Cell: p => {
 					let item = p.original;
 					return (
-						<a href={'https://stt.wiki/wiki/' + item.full_name.split(' ').join('_')} target='_blank'>
+						<a href={'https://sttwiki.org/wiki/' + item.full_name.split(' ').join('_')} target='_blank'>
 							{item.full_name}
 						</a>
 					);

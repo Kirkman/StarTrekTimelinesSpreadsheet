@@ -349,7 +349,7 @@ export class NeededEquipment extends React.Component {
 							<button style={{ marginBottom: '8px' }} className="ui button" onClick={() => this._replicateDialog.current.show(entry.equipment)}>Replicate...</button>
 						</div>
 						<div style={{ gridArea: 'name', alignSelf: 'start', margin: '0' }}>
-							<h4><a href={'https://stt.wiki/wiki/' + entry.equipment.name.split(' ').join('_')} target='_blank'>{entry.equipment.name}</a>
+							<h4><a href={'https://sttwiki.org/wiki/' + entry.equipment.name.split(' ').join('_')} target='_blank'>{entry.equipment.name}</a>
 							{` (need ${entry.needed}, have ${entry.have})`}</h4>
 						</div>
 						<div style={{ gridArea: 'details', alignSelf: 'start' }}>

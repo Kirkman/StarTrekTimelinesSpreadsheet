@@ -90,13 +90,11 @@ export class HomePage extends React.Component {
 
             <Divider />
 
-            <a href="https://www.patreon.com/bePatron?u=10555637" target='_blank' data-patreon-widget-type="become-patron-button"><img src='https://c5.patreon.com/external/logo/become_a_patron_button.png' /></a>
-
             <Header as='h3'>Miscellaneous links</Header>
             <List>
                 <List.Item icon='linkify' content={<a href="https://www.disruptorbeam.com/games/star-trek-timelines/" target='_blank'>Official game page</a>} />
                 <List.Item icon='linkify' content={<a href="https://forum.disruptorbeam.com/stt/" target='_blank'>Official game forums</a>} />
-                <List.Item icon='linkify' content={<a href="https://stt.wiki/wiki/Main_Page" target='_blank'>Wiki (player contributed, lots of useful info)</a>} />
+                <List.Item icon='linkify' content={<a href="https://sttwiki.org/wiki/Main_Page" target='_blank'>Wiki (player contributed, lots of useful info)</a>} />
                 <List.Item icon='linkify' content={<a href="https://discord.gg/8Du7ZtJ" target='_blank'>Discord channel</a>} />
                 <List.Item icon='linkify' content={<a href="https://www.reddit.com/r/StarTrekTimelines/" target='_blank'>Subreddit</a>} />
             </List>
